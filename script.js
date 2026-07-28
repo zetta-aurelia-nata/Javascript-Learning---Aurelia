@@ -12,11 +12,11 @@ const isIntern = true;
 let address = "Makassar";
 let middleName = null;
 
-console.log("Nama : ", studentName);
-console.log("umur : ",age);
-console.log("sedang magang? : " ,isIntern);
-console.log("Alamat Tempat Tinggal: ", address);
-console.log("Nama Tengah: ",middleName);
+console.log("Name : ", studentName);
+console.log("Age : ",age);
+console.log("In Intern: " ,isIntern);
+console.log("Address: ", address);
+console.log("Middle Name ",middleName);
 
 let dynamicValue = "Hello";
 console.log("Welcome text : ", dynamicValue);
