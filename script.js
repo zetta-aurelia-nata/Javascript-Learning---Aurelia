@@ -6,7 +6,7 @@ const bookCollection = firstFavoriteBook + " & " + secondFavoriteBook;
 
 console.log("Book Collection:", bookCollection);
 
-const studentName = "Aurelia Davine Putri Nata";
+const studentName = "Aurelia";
 let age = 21;
 const isIntern = true;
 let address = "Makassar";
