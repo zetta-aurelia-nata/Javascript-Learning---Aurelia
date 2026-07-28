@@ -1,6 +1,8 @@
 let firstFavoriteBook = "The first frost";
 const secondFavoriteBook = "King of Clash";
 
+secondFavoriteBook = "harry potter";
+
 firstFavoriteBook = "Twilight";
 const bookCollection = firstFavoriteBook + " & " + secondFavoriteBook;
 
@@ -13,7 +15,7 @@ let address = "Makassar";
 let middleName = null;
 
 console.log("name:", studentName);
-console.log("age:",age);
+console.log("age:", age);
 console.log("in intern:", isIntern);
 console.log("address:", address);
 console.log("middle name", middleName);
@@ -27,7 +29,7 @@ console.log(dynamicValue);
 dynamicValue = false;
 console.log(dynamicValue);
 
-const hobbies = ["Dance","Singing","Watching movie"];
+const hobbies = ["Dance", "Singing", "Watching movie"];
 
 console.log(hobbies);
 
