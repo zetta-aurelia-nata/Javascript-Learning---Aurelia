@@ -12,14 +12,14 @@ const isIntern = true;
 let address = "Makassar";
 let middleName = null;
 
-console.log("Name : ", studentName);
-console.log("Age : ",age);
-console.log("In Intern: " ,isIntern);
-console.log("Address: ", address);
-console.log("Middle Name ",middleName);
+console.log("name:", studentName);
+console.log("age:",age);
+console.log("in intern:", isIntern);
+console.log("address:", address);
+console.log("middle name", middleName);
 
 let dynamicValue = "Hello";
-console.log("Welcome text : ", dynamicValue);
+console.log("Welcome text:", dynamicValue);
 
 dynamicValue = 100;
 console.log(dynamicValue);
@@ -27,9 +27,9 @@ console.log(dynamicValue);
 dynamicValue = false;
 console.log(dynamicValue);
 
-const Hobbies = ["Dance", "Singing", "Watching movie"];
+const hobbies = ["Dance","Singing","Watching movie"];
 
-console.log(Hobbies);
+console.log(hobbies);
 
 const student = {
   name: "Aurelia",
