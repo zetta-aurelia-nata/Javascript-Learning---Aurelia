@@ -76,11 +76,11 @@ if (firstFavBookPrice > secondFavBookPrice) {
     highestPrice = secondFavBookPrice;
 }
 
-let averangePrice = (firstFavBookPrice + secondFavBookPrice) / 2;
+let averagePrice = (firstFavBookPrice + secondFavBookPrice) / 2;
 
-let bookPrice = averangePrice > 500000 ? "Expensive" : "Cheap";
+let bookPrice = averagePrice > 500000 ? "Expensive" : "Cheap";
 
-function max_of_two(a, b) {
+function maxOfTwo(a, b) {
     if (a > b) {
         return a;
     } else {
@@ -92,8 +92,8 @@ console.log()
 console.log("Javascript Learning day 2")
 console.log("Did", firstFavoriteBook, "&", secondFavoriteBook, "are the same book?", bookComparison)
 console.log("The highest price is:", highestPrice)
-console.log("The averange price is:", averangePrice)
+console.log("The averange price is:", averagePrice)
 console.log("The price is", bookPrice)
-console.log("The maximum number:", max_of_two(10, 5));
-console.log("The maximum number:", max_of_two(45, 66));
+console.log("The maximum number:", maxOfTwo(10, 5));
+console.log("The maximum number:", maxOfTwo(45, 66));
 
