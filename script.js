@@ -1,12 +1,8 @@
-let firstFavoriteBook = "The first frost";
+let firstFavoriteBook= "The first frost";
 const secondFavoriteBook = "King of Clash";
-
-secondFavoriteBook = "harry potter";
 
 firstFavoriteBook = "Twilight";
 const bookCollection = firstFavoriteBook + " & " + secondFavoriteBook;
-
-console.log("Book Collection:", bookCollection);
 
 const studentName = "Aurelia";
 let age = 21;
@@ -14,24 +10,13 @@ const isIntern = true;
 let address = "Makassar";
 let middleName = null;
 
-console.log("name:", studentName);
-console.log("age:", age);
-console.log("in intern:", isIntern);
-console.log("address:", address);
-console.log("middle name", middleName);
-
 let dynamicValue = "Hello";
-console.log("Welcome text:", dynamicValue);
 
 dynamicValue = 100;
-console.log(dynamicValue);
 
 dynamicValue = false;
-console.log(dynamicValue);
 
 const hobbies = ["Dance", "Singing", "Watching movie"];
-
-console.log(hobbies);
 
 const student = {
   name: "Aurelia",
@@ -39,8 +24,6 @@ const student = {
   major: "Informatics",
   isIntern: true
 };
-
-console.log(student);
 
 const books = [
   {
@@ -60,4 +43,60 @@ const books = [
   }
 ];
 
+console.log("My Book Collection:", bookCollection);
+console.log("Name:", studentName);
+console.log("Age:", age);
+console.log("In Intern:", isIntern);
+console.log("Address:", address);
+console.log("Middle Name", middleName);
+console.log("Welcome Text:", dynamicValue);
+console.log(dynamicValue);
+console.log(dynamicValue);
+console.log(hobbies);
+console.log(student);
 console.log(books);
+
+
+// Javascript Learning day 2
+let result = firstFavoriteBook === secondFavoriteBook;
+
+let price1 = 700000;
+let price2 = 600000;
+
+let highestPrice;
+
+if (price1 > price2) {
+    highestPrice = price1;
+} else {
+    highestPrice = price2;
+}
+
+let averangePrice = (price1 + price2) / 2;
+
+let value;
+
+if (averangePrice > 500000) {
+    value = "Expensive";
+} else if (averangePrice === 500000) {
+    value = "Usual Price";
+} else {
+    value = "Cheap";
+}
+
+function max_of_two(a, b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+console.log()
+console.log("Javascript Learning day 2")
+console.log("Did", firstFavoriteBook, "&", secondFavoriteBook, "are the same book?", result)
+console.log("The highest price is:", highestPrice)
+console.log("The averange price is:", averangePrice)
+console.log("The price is", value)
+console.log("The maximum number:", max_of_two(10, 5));
+console.log("The maximum number:", max_of_two(45, 66));
+
