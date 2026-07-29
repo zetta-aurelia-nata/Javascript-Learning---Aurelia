@@ -63,30 +63,22 @@ console.log("Books Data:", books);
 
 
 // Javascript Learning day 2
-let result = firstFavoriteBook === secondFavoriteBook;
+let bookComparison = firstFavoriteBook === secondFavoriteBook;
 
-let price1 = 700000;
-let price2 = 600000;
+let firstFavBookPrice = 700000;
+let secondFavBookPrice = 600000;
 
 let highestPrice;
 
-if (price1 > price2) {
-    highestPrice = price1;
+if (firstFavBookPrice > secondFavBookPrice) {
+    highestPrice = firstFavBookPrice;
 } else {
-    highestPrice = price2;
+    highestPrice = secondFavBookPrice;
 }
 
-let averangePrice = (price1 + price2) / 2;
+let averangePrice = (firstFavBookPrice + secondFavBookPrice) / 2;
 
-let value;
-
-if (averangePrice > 500000) {
-    value = "Expensive";
-} else if (averangePrice === 500000) {
-    value = "Usual Price";
-} else {
-    value = "Cheap";
-}
+let bookPrice = averangePrice >= 50000 ? "Expensive" : "Cheap";
 
 function max_of_two(a, b) {
     if (a > b) {
@@ -98,10 +90,10 @@ function max_of_two(a, b) {
 
 console.log()
 console.log("Javascript Learning day 2")
-console.log("Did", firstFavoriteBook, "&", secondFavoriteBook, "are the same book?", result)
+console.log("Did", firstFavoriteBook, "&", secondFavoriteBook, "are the same book?", bookComparison)
 console.log("The highest price is:", highestPrice)
 console.log("The averange price is:", averangePrice)
-console.log("The price is", value)
+console.log("The price is", bookPrice)
 console.log("The maximum number:", max_of_two(10, 5));
 console.log("The maximum number:", max_of_two(45, 66));
 
