@@ -78,7 +78,7 @@ if (firstFavBookPrice > secondFavBookPrice) {
 
 let averangePrice = (firstFavBookPrice + secondFavBookPrice) / 2;
 
-let bookPrice = averangePrice >= 50000 ? "Expensive" : "Cheap";
+let bookPrice = averangePrice > 500000 ? "Expensive" : "Cheap";
 
 function max_of_two(a, b) {
     if (a > b) {
