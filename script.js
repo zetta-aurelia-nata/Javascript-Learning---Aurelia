@@ -8,13 +8,6 @@ const studentName = "Aurelia";
 let age = 21;
 const isIntern = true;
 let address = "Makassar";
-let middleName = null;
-
-let dynamicValue = "Hello";
-
-dynamicValue = 100;
-
-dynamicValue = false;
 
 const hobbies = ["Dance", "Singing", "Watching movie"];
 
@@ -45,8 +38,6 @@ const books = [
 
 
 //Javascript learning day 2
-let bookComparison = firstFavoriteBook === secondFavoriteBook;
-
 let firstFavBookPrice = 700000;
 let secondFavBookPrice = 600000;
 
@@ -90,9 +81,10 @@ function priceAfterTax(bookPrice, taxPercentage) {
 }
 
 function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
-    const priceAfterDiscount = amountOfDiscount(bookPrice, discountPercentage);
-    const tax = amountOfTax(priceAfterDiscount, taxPercentage);
-    const finalPrice = priceAfterDiscount + tax;
+    const discountedPrice = priceAfterDiscount(bookPrice, discountPercentage);
+    const tax = amountOfTax(discountedPrice, taxPercentage);
+    const finalPrice = discountedPrice + tax;
+
     return finalPrice;
 }
 
@@ -100,6 +92,7 @@ const storeName = "Book Store Hari";
 const discountPercentage = 20;
 const taxPercentage = 10;
 const currentPrice = averagePrice;
+
 
 console.log("Book store Name:", storeName);
 console.log("My books collection:", books);
