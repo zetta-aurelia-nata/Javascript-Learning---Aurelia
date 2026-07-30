@@ -81,9 +81,9 @@ function priceAfterTax(bookPrice, taxPercentage) {
 }
 
 function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
-    const discountedPrice = priceAfterDiscount(bookPrice, discountPercentage);
-    const tax = amountOfTax(discountedPrice, taxPercentage);
-    const finalPrice = discountedPrice + tax;
+    const discount = priceAfterDiscount(bookPrice, discountPercentage);
+    const tax = amountOfTax(discount, taxPercentage);
+    const finalPrice = discount + tax;
 
     return finalPrice;
 }
