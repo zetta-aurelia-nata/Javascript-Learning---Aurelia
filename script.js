@@ -71,39 +71,38 @@ function maxOfTwo(a, b) {
 }
 
 //Javascript learning day 3
-function calculateDiscount(bookPrice, discountPercentage) {
+function amountOfDiscount(bookPrice, discountPercentage) {
     return (bookPrice *= discountPercentage) / 100;
 }
 
 function priceAfterDiscount(bookPrice, discountPercentage) {
-    const discount = calculateDiscount(bookPrice, discountPercentage);
+    const discount = amountOfDiscount(bookPrice, discountPercentage);
     return bookPrice -= discount;
 }
 
-function calculateTax(bookPrice, taxPercentage) {
+function amountOfTax(bookPrice, taxPercentage) {
     return (bookPrice *= taxPercentage) / 100;
 }
 
 function priceAfterTax(bookPrice, taxPercentage) {
-    const tax = calculateTax(bookPrice, taxPercentage);
+    const tax = amountOfTax(bookPrice, taxPercentage);
     return bookPrice += tax;
 }
 
 function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
-    const priceAfterDiscount = calculateDiscount(bookPrice, discountPercentage);
-    const tax = calculateTax(priceAfterDiscount, taxPercentage);
+    const priceAfterDiscount = amountOfDiscount(bookPrice, discountPercentage);
+    const tax = amountOfTax(priceAfterDiscount, taxPercentage);
     const finalPrice = priceAfterDiscount + tax;
     return finalPrice;
 }
-
 
 const discountPercentage = 20;
 const taxPercentage = 10;
 const currentPrice = averagePrice;
 
 console.log("The Current Price for the", bookCollection, ":", currentPrice);
-console.log("Amount of discount (20%):", calculateDiscount(currentPrice, discountPercentage));
+console.log("Amount of discount (20%):", amountOfDiscount(currentPrice, discountPercentage));
 console.log("Book price after discount (20%):", priceAfterDiscount(currentPrice, discountPercentage));
-console.log("Amount of tax (10%):", calculateTax(currentPrice, taxPercentage))
+console.log("Amount of tax (10%):", amountOfTax(currentPrice, taxPercentage))
 console.log("Normal Book price after Tax (10%):", priceAfterTax(currentPrice, taxPercentage));
-console.log("Final price after tax:", calculateFinalPrice(currentPrice, discountPercentage, taxPercentage));
+console.log("Final price after tax & discount:", calculateFinalPrice(currentPrice, discountPercentage, taxPercentage));
