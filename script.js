@@ -4,32 +4,19 @@ const secondFavoriteBook = "King of Clash";
 firstFavoriteBook = "Twilight";
 const bookCollection = firstFavoriteBook + " & " + secondFavoriteBook;
 
-console.log("Book Collection:", bookCollection);
-
 const studentName = "Aurelia";
 let age = 21;
 const isIntern = true;
 let address = "Makassar";
 let middleName = null;
 
-console.log("Name:", studentName);
-console.log("Age:", age);
-console.log("In Intern:", isIntern);
-console.log("Address:", address);
-console.log("Middle Name", middleName);
-
 let dynamicValue = "Hello";
-console.log("Welcome Text:", dynamicValue);
 
 dynamicValue = 100;
-console.log(dynamicValue);
 
 dynamicValue = false;
-console.log(dynamicValue);
 
 const hobbies = ["Dance", "Singing", "Watching movie"];
-
-console.log("My Hobbies:", hobbies);
 
 const student = {
     name: "Aurelia",
@@ -37,8 +24,6 @@ const student = {
     major: "Informatics",
     isIntern: true
 };
-
-console.log("My Student Data: ", student);
 
 const books = [
     {
@@ -58,11 +43,8 @@ const books = [
     }
 ];
 
-console.log("Books Data:", books);
 
-
-
-// Javascript Learning day 2
+//Javascript learning day 2
 let bookComparison = firstFavoriteBook === secondFavoriteBook;
 
 let firstFavBookPrice = 700000;
@@ -88,12 +70,40 @@ function maxOfTwo(a, b) {
     }
 }
 
-console.log()
-console.log("Javascript Learning day 2")
-console.log("Did", firstFavoriteBook, "&", secondFavoriteBook, "are the same book?", bookComparison)
-console.log("The highest price is:", highestPrice)
-console.log("The averange price is:", averagePrice)
-console.log("The price is", bookPrice)
-console.log("The maximum number:", maxOfTwo(10, 5));
-console.log("The maximum number:", maxOfTwo(45, 66));
+//Javascript learning day 3
+function calculateDiscount(bookPrice, discountPercentage) {
+    return (bookPrice *= discountPercentage) / 100;
+}
 
+function priceAfterDiscount(bookPrice, discountPercentage) {
+    const discount = calculateDiscount(bookPrice, discountPercentage);
+    return bookPrice -= discount;
+}
+
+function calculateTax(bookPrice, taxPercentage) {
+    return (bookPrice *= taxPercentage) / 100;
+}
+
+function priceAfterTax(bookPrice, taxPercentage) {
+    const tax = calculateTax(bookPrice, taxPercentage);
+    return bookPrice += tax;
+}
+
+function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
+    const priceAfterDiscount = calculateDiscount(bookPrice, discountPercentage);
+    const tax = calculateTax(priceAfterDiscount, taxPercentage);
+    const finalPrice = priceAfterDiscount + tax;
+    return finalPrice;
+}
+
+
+const discountPercentage = 20;
+const taxPercentage = 10;
+const currentPrice = averagePrice;
+
+console.log("The Current Price for the", bookCollection, ":", currentPrice);
+console.log("Amount of discount (20%):", calculateDiscount(currentPrice, discountPercentage));
+console.log("Book price after discount (20%):", priceAfterDiscount(currentPrice, discountPercentage));
+console.log("Amount of tax (10%):", calculateTax(currentPrice, taxPercentage))
+console.log("Normal Book price after Tax (10%):", priceAfterTax(currentPrice, taxPercentage));
+console.log("Final price after tax:", calculateFinalPrice(currentPrice, discountPercentage, taxPercentage));
