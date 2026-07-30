@@ -96,10 +96,13 @@ function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
     return finalPrice;
 }
 
+const storeName = "Book Store Hari";
 const discountPercentage = 20;
 const taxPercentage = 10;
 const currentPrice = averagePrice;
 
+console.log("Book store Name:", storeName);
+console.log("My books collection:", books);
 console.log("The Current Price for the", bookCollection, ":", currentPrice);
 console.log("Amount of discount (20%):", amountOfDiscount(currentPrice, discountPercentage));
 console.log("Book price after discount (20%):", priceAfterDiscount(currentPrice, discountPercentage));
