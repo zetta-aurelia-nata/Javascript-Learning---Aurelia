@@ -9,8 +9,7 @@ let age = 21;
 const isIntern = true;
 let address = "Makassar";
 
-const hobbies = ["Dance", "Singing", "Watching movie"];
-
+const hobbies = ["Dance", "Singing", "Watching Movie"];
 const student = {
     name: "Aurelia",
     age: 21,
@@ -20,85 +19,112 @@ const student = {
 
 const books = [
     {
-        title: "The first frost ",
+        title: "The First Frost",
         author: "Aurel",
-        year: 2018
+        year: 2018,
+        price: 700000,
+        stock: 3
     },
     {
         title: "King of Clash",
         author: "RRone",
-        year: 2020
+        year: 2020,
+        price: 600000,
+        stock: 2
     },
     {
         title: "Twilight",
-        author: "hai",
-        year: 2017
+        author: "Hai",
+        year: 2017,
+        price: 500000,
+        stock: 1
     }
 ];
 
-
-//Javascript learning day 2
-let firstFavBookPrice = 700000;
-let secondFavBookPrice = 600000;
-
-let highestPrice;
-
-if (firstFavBookPrice > secondFavBookPrice) {
-    highestPrice = firstFavBookPrice;
-} else {
-    highestPrice = secondFavBookPrice;
-}
-
-let averagePrice = (firstFavBookPrice + secondFavBookPrice) / 2;
-
-let bookPrice = averagePrice > 500000 ? "Expensive" : "Cheap";
-
-function maxOfTwo(a, b) {
-    if (a > b) {
-        return a;
-    } else {
-        return b;
-    }
-}
-
-//Javascript learning day 3
 function amountOfDiscount(bookPrice, discountPercentage) {
-    return (bookPrice *= discountPercentage) / 100;
+    return (bookPrice * discountPercentage) / 100;
 }
 
 function priceAfterDiscount(bookPrice, discountPercentage) {
     const discount = amountOfDiscount(bookPrice, discountPercentage);
-    return bookPrice -= discount;
+    return bookPrice - discount;
 }
 
 function amountOfTax(bookPrice, taxPercentage) {
-    return (bookPrice *= taxPercentage) / 100;
+    return (bookPrice * taxPercentage) / 100;
 }
 
 function priceAfterTax(bookPrice, taxPercentage) {
     const tax = amountOfTax(bookPrice, taxPercentage);
-    return bookPrice += tax;
+    return bookPrice + tax;
 }
 
 function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
-    const discount = priceAfterDiscount(bookPrice, discountPercentage);
-    const tax = amountOfTax(discount, taxPercentage);
-    const finalPrice = discount + tax;
+    const discountedPrice = priceAfterDiscount(bookPrice, discountPercentage);
+    const tax = amountOfTax(discountedPrice, taxPercentage);
 
-    return finalPrice;
+    return discountedPrice + tax;
 }
 
-const storeName = "Book Store Hari";
-const discountPercentage = 20;
+//Learning javascript day 4
+function displayBooks() {
+    console.log("========================================================  BOOK LIST ========================================================");
+
+    for (let integer = 0; integer < books.length; integer++) {
+        const status =
+            books[integer].stock > 0 ? "Available" : "Out Of Stock, this book cannot be purchased";
+
+        console.log(
+            "Book Name:", books[integer].title +
+            " | Release Year:" + books[integer].year +
+            " | Author:" + books[integer].author +
+            " | Price: " + books[integer].price +
+            " | Stock: " + books[integer].stock +
+            " | Status: " + status
+        );
+    }
+}
+
+function calculateTotalPrice() {
+    console.log("===============================================  TOTAL PRICE & LIST OF PURCHASE BOOKS ======================================");
+    let totalPrice = 0;
+
+    for (let integer = 0; integer < books.length; integer++) {
+        totalPrice += books[integer].price;
+    }
+    return totalPrice;
+}
+
+function purchaseBooks() {
+    let purchaseBook = [];
+    let outOfStock = -1;
+
+    for (let integer = 0; integer < books.length; integer++) {
+
+        if (books[integer].stock === 0) {
+            outOfStock = integer;
+            break;
+        }
+
+        console.log("Purchasing: " + books[integer].title);
+        books[integer].stock--;
+    }
+
+    if (outOfStock !== -1) {
+        console.log("Y0u can't purchased this" + books[outOfStock].title + " because it is out of stock.");
+    }
+}
+
+const discountPercentage = 15;
 const taxPercentage = 10;
-const currentPrice = averagePrice;
 
+displayBooks();
 
-console.log("Book store Name:", storeName);
-console.log("My books collection:", books);
-console.log("The Current Price for the", bookCollection, ":", currentPrice);
-console.log("Amount of discount (20%):", amountOfDiscount(currentPrice, discountPercentage));
-console.log("Book price after discount (20%):", priceAfterDiscount(currentPrice, discountPercentage));
-console.log("Amount of tax (10%):", amountOfTax(currentPrice, taxPercentage))
-console.log("Normal Book price after Tax (10%):", priceAfterTax(currentPrice, taxPercentage));
-console.log("Final price after tax & discount:", calculateFinalPrice(currentPrice, discountPercentage, taxPercentage));
+const totalPrice = calculateTotalPrice();
+
+console.log("Total Book Price:", totalPrice);
+console.log("Book Final Price after discount & tax:", calculateFinalPrice(totalPrice, discountPercentage, taxPercentage));
+purchaseBooks();
+console.log("====================================================  BOOK STOCK AFTER PURCHASE ============================================");
+displayBooks();
+
