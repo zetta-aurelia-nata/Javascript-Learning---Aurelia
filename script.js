@@ -136,12 +136,12 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
     console.log("Requested Quantity:", purchaseQuantity);
     console.log("Purchased Quantity:", purchasedQuantity);
     console.log("Original Total Price:", totalPrice);
-    console.log("Discount (" +discountPercentage +"%):",discount);
-    console.log("Price After Discount:", priceAfterDiscountValue );
-    console.log("Tax (" +   taxPercentage +   "%):",  tax  );
+    console.log("Discount (" + discountPercentage + "%):", discount);
+    console.log("Price After Discount:", priceAfterDiscountValue);
+    console.log("Tax (" + taxPercentage + "%):", tax);
     console.log("Final Price:", finalPrice);
 
-    console.log("Remaining Stock:",selectedBook.stock);
+    console.log("Remaining Stock:", selectedBook.stock);
 
     if (selectedBook.stock > 0) {
         console.log("This book can still be purchased again.");
@@ -154,6 +154,6 @@ displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
 
-purchaseBook("The First Frost",1,discountPercentage,taxPercentage);
+purchaseBook("The First Frost", 8, discountPercentage, taxPercentage);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
