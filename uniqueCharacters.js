@@ -1,4 +1,3 @@
-
 function hasUniqueCharacters(word) {
   for (let i = 0; i < word.length; i++) {
     for (let j = i + 1; j < word.length; j++) {
