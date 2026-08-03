@@ -83,13 +83,7 @@ function calculateDueDates(creditDuration, finalPrice) {
         const dueDate = new Date();
         dueDate.setMonth(dueDate.getMonth() + index + 1);
 
-        return (
-            "Term " + (index + 1) +
-            " Month | Installment Payment: " +
-            installmentAmount +
-            " | Due Date: " +
-            dueDate.toLocaleDateString()
-        );
+        return ("Term " + (index + 1) + " Month | Installment Payment: " + installmentAmount + " | Due Date: " + dueDate.toLocaleDateString());
     });
 }
 
@@ -166,6 +160,6 @@ displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
 
-purchaseBook("The First Frost", 5, discountPercentage, taxPercentage, 3);
+purchaseBook("The First Frost", 3, discountPercentage, taxPercentage, 3);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
