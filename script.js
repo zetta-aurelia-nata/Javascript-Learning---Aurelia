@@ -103,7 +103,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         return;
     }
 
-    let purchasedQuantity = 0;
+    let purchasedBookQuantity = 0;
     let totalPrice = 0;
 
     for (let i = 1; i <= purchaseQuantity; i++) {
@@ -114,10 +114,10 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         }
 
         selectedBook.stock--;
-        purchasedQuantity++;
+        purchasedBookQuantity++;
         totalPrice += selectedBook.price;
 
-        console.log("Successfully purchased copy #" + purchasedQuantity);
+        console.log("Successfully purchased copy #" + purchasedBookQuantity);
     }
 
     const discount = amountOfDiscount(totalPrice, discountPercentage);
@@ -129,7 +129,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
 
     console.log("Book Title:", selectedBook.title);
     console.log("Requested Quantity:", purchaseQuantity);
-    console.log("Purchased Quantity:", purchasedQuantity);
+    console.log("Purchased Quantity:", purchasedBookQuantity);
     console.log("Original Total Price:", totalPrice);
     console.log("Discount (" + discountPercentage + "%):", discount);
     console.log("Price After Discount:", priceAfterDiscountValue);
@@ -149,6 +149,6 @@ displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
 
-purchaseBook("The First Frost", 8, discountPercentage, taxPercentage);
+purchaseBook("The First Frost", 1, discountPercentage, taxPercentage);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
