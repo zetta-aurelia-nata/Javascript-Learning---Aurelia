@@ -75,9 +75,7 @@ function displayBooks() {
     for (let i = 0; i < books.length; i++) {
 
         const status =
-            books[i].stock > 0
-                ? "Available"
-                : "Out Of Stock";
+            books[i].stock > 0 ? "Available" : "Out Of Stock";
 
         console.log(
             books[i].title +
@@ -108,7 +106,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         return;
     }
 
-    let purchasedQuantity = 0;
+    let purchaseQuantity = 0;
     let totalPrice = 0;
 
     for (let i = 1; i <= purchaseQuantity; i++) {
@@ -119,10 +117,10 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         }
 
         selectedBook.stock--;
-        purchasedQuantity++;
+        purchaseQuantity++;
         totalPrice += selectedBook.price;
 
-        console.log("Successfully purchased copy #" + purchasedQuantity);
+        console.log("Successfully purchased copy #" + purchaseQuantity);
     }
 
     const discount = amountOfDiscount(totalPrice, discountPercentage);
@@ -134,7 +132,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
 
     console.log("Book Title:", selectedBook.title);
     console.log("Requested Quantity:", purchaseQuantity);
-    console.log("Purchased Quantity:", purchasedQuantity);
+    console.log("Purchased Quantity:", purchaseQuantity);
     console.log("Original Total Price:", totalPrice);
     console.log("Discount (" + discountPercentage + "%):", discount);
     console.log("Price After Discount:", priceAfterDiscountValue);
