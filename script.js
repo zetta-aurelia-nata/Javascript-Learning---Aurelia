@@ -104,7 +104,7 @@ function displayPaymentTerms(book, finalPrice) {
 
     dueDates.forEach((payment) => {
         console.log(
-            "Term " + payment.term + " Month | Installment Payment: " + 
+            "Term " + payment.term + " Month | Installment Payment: " +
             payment.installmentAmount + " | Due Date: " + payment.dueDate
         );
     });
