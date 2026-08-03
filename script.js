@@ -2,9 +2,14 @@ let firstFavoriteBook = "The First Frost";
 const secondFavoriteBook = "King of Clash";
 
 firstFavoriteBook = "Twilight";
+const bookCollection = firstFavoriteBook + " & " + secondFavoriteBook;
+
+const studentName = "Aurelia";
 let age = 21;
 const isIntern = true;
-const address = "Makassar";
+let address = "Makassar";
+
+const hobbies = ["Dance", "Singing", "Watching Movie"];
 
 const student = {
     name: "Aurelia",
@@ -19,8 +24,8 @@ const books = [
         author: "Aurel",
         year: 2018,
         price: 700000,
-        stock: 8,
-        creditMonth: [1, 2, 3, 4, 5, 6]
+        stock: 3,
+        paymentTerms: [1, 2, 3]
     },
     {
         title: "King of Clash",
@@ -28,8 +33,7 @@ const books = [
         year: 2020,
         price: 600000,
         stock: 2,
-        creditMonth: [1, 2, 3, 4, 5]
-
+        paymentTerms: [1, 2]
     },
     {
         title: "Twilight",
@@ -37,10 +41,10 @@ const books = [
         year: 2017,
         price: 500000,
         stock: 1,
-        creditMonth: [1, 2, 3, 4, 5, 6]
+        paymentTerms: [1, 2, 3, 4, 5]
+
     }
 ];
-
 
 function amountOfDiscount(bookPrice, discountPercentage) {
     return (bookPrice * discountPercentage) / 100
@@ -70,15 +74,14 @@ function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
 }
 
 function displayBooks() {
-    console.log("================= BOOK LIST ==================");
+    console.log("\n================ BOOK LIST ================");
 
     for (let i = 0; i < books.length; i++) {
 
         const status =
             books[i].stock > 0 ? "Available" : "Out Of Stock";
 
-        console.log(
-            books[i].title +
+        console.log(books[i].title +
             " | Author: " + books[i].author +
             " | Year: " + books[i].year +
             " | Price: " + books[i].price +
@@ -88,18 +91,14 @@ function displayBooks() {
     }
 }
 
-function calculateDueDates(creditMonth) {
-    const totalTerms = creditMonth.length;
-
-    return creditMonth.map((term) => {
+function calculateDueDates(paymentTerms) {
+    return paymentTerms.map((term) => {
         const dueDate = new Date();
-
         dueDate.setMonth(dueDate.getMonth() + term);
 
         return {
             term: term,
-            dueDate: dueDate.toLocaleDateString(),
-            totalTerms: totalTerms
+            dueDate: dueDate.toLocaleDateString()
         }
     });
 }
@@ -107,19 +106,23 @@ function calculateDueDates(creditMonth) {
 function displayPaymentTerms(book, finalPrice) {
     console.log("\n========== INSTALLMENT PAYMENT ==========");
     console.log("Book:", book.title);
-    console.log("final price:", finalPrice);
+    console.log("final price:", finalPrice)
 
-    const dueDates = calculateDueDates(book.creditMonth);
-    const totalTerms = dueDates.length;
-    const installmentAmount = finalPrice / totalTerms;
-
+    const dueDates = calculateDueDates(book.paymentTerms);
     dueDates.forEach((payment) => {
-        console.log("Term " + payment.term + " Month | Installment Payment: " + installmentAmount.toFixed(2) + " | Due Date: " + payment.dueDate);
+        const installamentAmount = finalPrice / payment.term;
+        
+        console.log(
+            "Term " + payment.term +
+            " Month" +
+            " | Installment: " +
+            installamentAmount.toFixed(2) +
+            " | Due Date: " + payment.dueDate
+        );
     });
 }
 
-
-function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercentage, creditMonth) {
+function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercentage) {
 
     console.log("\n============== PURCHASE BOOK ==============");
 
@@ -137,7 +140,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         return;
     }
 
-    let purchasedBookQuantity = 0;
+    let purchasedQuantity = 0;
     let totalPrice = 0;
 
     for (let i = 1; i <= purchaseQuantity; i++) {
@@ -148,10 +151,10 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         }
 
         selectedBook.stock--;
-        purchasedBookQuantity++;
+        purchasedQuantity++;
         totalPrice += selectedBook.price;
 
-        console.log("Successfully purchased copy " + purchasedBookQuantity);
+        console.log("Successfully purchased copy #" + purchasedQuantity);
     }
 
     const discount = amountOfDiscount(totalPrice, discountPercentage);
@@ -162,12 +165,12 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
     console.log("\n============= PURCHASE SUMMARY =============");
     console.log("Book Title:", selectedBook.title);
     console.log("Requested Quantity:", purchaseQuantity);
-    console.log("Purchased Quantity:", purchasedBookQuantity);
+    console.log("Purchased Quantity:", purchasedQuantity);
     console.log("Original Total Price:", totalPrice);
     console.log("Discount (" + discountPercentage + "%):", discount);
     console.log("Price After Discount:", priceAfterDiscountValue);
     console.log("Tax (" + taxPercentage + "%):", tax);
-    console.log("Total Price:", finalPrice);
+    console.log("Final Price:", finalPrice);
     console.log("Remaining Stock:", selectedBook.stock);
 
     if (selectedBook.stock > 0) {
@@ -180,10 +183,9 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
     }
 }
 
-displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
-
-purchaseBook("The First Frost", 9, discountPercentage, taxPercentage);
+displayBooks();
+purchaseBook("The First Frost", 8, discountPercentage, taxPercentage);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
