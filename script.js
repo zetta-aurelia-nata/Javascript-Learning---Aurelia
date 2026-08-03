@@ -19,24 +19,21 @@ const books = [
         author: "Aurel",
         year: 2018,
         price: 700000,
-        stock: 8,
-        paymentTerms: [1, 2, 3, 4, 5, 6]
+        stock: 8
     },
     {
         title: "King of Clash",
         author: "RRone",
         year: 2020,
         price: 600000,
-        stock: 2,
-        paymentTerms: [1, 2, 3, 4, 5]
+        stock: 2
     },
     {
         title: "Twilight",
         author: "Hai",
         year: 2017,
         price: 500000,
-        stock: 1,
-        paymentTerms: [1, 2, 3, 4, 5, 6]
+        stock: 1
     }
 ];
 
@@ -79,38 +76,34 @@ function displayBooks() {
     }
 }
 
-function calculateDueDates(paymentTerms, finalPrice) {
-    const totalTerms = paymentTerms.length;
-    const installmentAmount = (finalPrice / totalTerms).toFixed(2);
+function calculateDueDates(creditDuration, finalPrice) {
+    const installmentAmount = (finalPrice / creditDuration).toFixed(2);
 
-    return paymentTerms.map((term) => {
+    return Array.from({ length: creditDuration }, (_, index) => {
         const dueDate = new Date();
-        dueDate.setMonth(dueDate.getMonth() + term);
+        dueDate.setMonth(dueDate.getMonth() + index + 1);
 
-        return {
-            term: term,
-            installmentAmount: installmentAmount,
-            dueDate: dueDate.toLocaleDateString()
-        };
-    });
-}
-
-function displayPaymentTerms(book, finalPrice) {
-    console.log("\n========== INSTALLMENT PAYMENT ==========");
-    console.log("Book:", book.title);
-    console.log("Final price:", finalPrice);
-
-    const dueDates = calculateDueDates(book.paymentTerms, finalPrice);
-
-    dueDates.forEach((payment) => {
-        console.log(
-            "Term " + payment.term + " Month | Installment Payment: " +
-            payment.installmentAmount + " | Due Date: " + payment.dueDate
+        return (
+            "Term " + (index + 1) +
+            " Month | Installment Payment: " +
+            installmentAmount +
+            " | Due Date: " +
+            dueDate.toLocaleDateString()
         );
     });
 }
 
-function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercentage) {
+function displayPaymentTerms(selectedBook, finalPrice, creditDuration) {
+    console.log("\n========== INSTALLMENT PAYMENT ==========");
+    console.log("Book:", selectedBook.title);
+    console.log("Final price:", finalPrice);
+
+    const dueDates = calculateDueDates(creditDuration, finalPrice);
+
+    console.log(dueDates);
+}
+
+function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercentage, creditDuration) {
     console.log("\n============== PURCHASE BOOK ==============");
 
     let selectedBook = null;
@@ -165,7 +158,7 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
     }
 
     if (purchasedBookQuantity > 0) {
-        displayPaymentTerms(selectedBook, finalPrice);
+        displayPaymentTerms(selectedBook, finalPrice, creditDuration);
     }
 }
 
@@ -173,6 +166,6 @@ displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
 
-purchaseBook("The First Frost", 3, discountPercentage, taxPercentage);
+purchaseBook("The First Frost", 5, discountPercentage, taxPercentage, 3);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
