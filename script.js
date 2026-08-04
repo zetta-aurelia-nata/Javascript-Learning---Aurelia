@@ -91,22 +91,18 @@ function calculatePaymentSchedule(creditDuration, finalPrice, interestPercentage
         const dueDate = new Date();
         dueDate.setMonth(dueDate.getMonth() + index + 1);
 
-        const amountOfPayment =
-            index === creditDuration - 1 ? monthlyPayment + remainder : monthlyPayment;
-
+        const amountOfPayment = index === creditDuration - 1 ? monthlyPayment + remainder : monthlyPayment;
         const interest = amountOfInterest(amountOfPayment, interestPercentage);
-
 
         return {
             term: index + 1 + " month",
             dueDate: dueDate.toLocaleDateString(),
             amountOfPayment,
             interest,
-            totalPerMonth: amountOfPayment + interest
+            paymentPerMonth: amountOfPayment + interest
         };
     });
 }
-
 
 function displayPaymentTerms(selectedBook, finalPrice, creditDuration, interestPercentage) {
     console.log("\n========== INSTALLMENT PAYMENT ==========");
