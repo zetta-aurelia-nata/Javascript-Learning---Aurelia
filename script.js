@@ -37,6 +37,7 @@ const books = [
     }
 ];
 
+
 function amountOfDiscount(bookPrice, discountPercentage) {
     return (bookPrice * discountPercentage) / 100;
 }
@@ -61,10 +62,16 @@ function calculateFinalPrice(bookPrice, discountPercentage, taxPercentage) {
     return discountedPrice + tax;
 }
 
+function amountOfInterest(bookPrice, interestPercentage) {
+    return (bookPrice * interestPercentage) / 100;
+}
+
 function displayBooks() {
-    console.log("================= BOOK LIST ==================");
+    console.log("================= BOOK LIST =================");
+
     for (let i = 0; i < books.length; i++) {
         const status = books[i].stock > 0 ? "Available" : "Out Of Stock";
+
         console.log(
             books[i].title +
             " | Author: " + books[i].author +
@@ -76,31 +83,52 @@ function displayBooks() {
     }
 }
 
-function calculateDueDates(creditDuration, finalPrice) {
-    const installmentAmount = (finalPrice / creditDuration).toFixed(2);
+function calculatePaymentSchedule(creditDuration, finalPrice, interestPercentage) {
+    const monthlyPayment = Math.floor(finalPrice / creditDuration);
+    const remainder = finalPrice % creditDuration;
 
     return Array.from({ length: creditDuration }, (_, index) => {
         const dueDate = new Date();
         dueDate.setMonth(dueDate.getMonth() + index + 1);
 
-        return ("Term " + (index + 1) + " Month | Installment Payment: " + installmentAmount + " | Due Date: " + dueDate.toLocaleDateString());
+        const amountOfPayment =
+            index === creditDuration - 1 ? monthlyPayment + remainder : monthlyPayment;
+
+        const interest = amountOfInterest(amountOfPayment, interestPercentage);
+
+        return {
+            term: index + 1 + " month",
+            dueDate: dueDate.toLocaleDateString(),
+            amountOfPayment,
+            interest
+        };
     });
 }
 
-function displayPaymentTerms(selectedBook, finalPrice, creditDuration) {
+
+function displayPaymentTerms(selectedBook, finalPrice, creditDuration, interestPercentage) {
     console.log("\n========== INSTALLMENT PAYMENT ==========");
     console.log("Book:", selectedBook.title);
-    console.log("Final price:", finalPrice);
+    console.log("Final Price:", finalPrice);
 
-    const dueDates = calculateDueDates(creditDuration, finalPrice);
+    const paymentSchedule = calculatePaymentSchedule(creditDuration, finalPrice, interestPercentage);
+    console.log(paymentSchedule);
 
-    console.log(dueDates);
+    const totalpayment = paymentSchedule.reduce((total, item) => total + item.amountOfPayment, 0);
+    const totalInterest = paymentSchedule.reduce((total, item) => total + item.amountOfInterest, 0);
+
+    console.log("\nTotal payment:", totalpayment);
+    console.log("Is it Equal To Final Price:", totalpayment === finalPrice);
 }
 
-function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercentage, creditDuration) {
+
+
+
+function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, interestPercentage, taxPercentage, creditDuration) {
     console.log("\n============== PURCHASE BOOK ==============");
 
     let selectedBook = null;
+
     for (let i = 0; i < books.length; i++) {
         if (books[i].title === bookTitle) {
             selectedBook = books[i];
@@ -129,6 +157,11 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         console.log("Successfully purchased copy " + purchasedBookQuantity);
     }
 
+    if (purchasedBookQuantity === 0) {
+        console.log("No books were purchased.");
+        return;
+    }
+
     const discount = amountOfDiscount(totalPrice, discountPercentage);
     const priceAfterDiscountValue = priceAfterDiscount(totalPrice, discountPercentage);
     const tax = amountOfTax(priceAfterDiscountValue, taxPercentage);
@@ -151,15 +184,18 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, taxPercen
         console.log("This book cannot be purchased again.");
     }
 
-    if (purchasedBookQuantity > 0) {
-        displayPaymentTerms(selectedBook, finalPrice, creditDuration);
-    }
+    displayPaymentTerms(selectedBook, finalPrice, creditDuration, interestPercentage);
 }
+
 
 displayBooks();
 const discountPercentage = 15;
 const taxPercentage = 10;
+const interestPercentage = 2;
 
-purchaseBook("The First Frost", 3, discountPercentage, taxPercentage, 3);
+purchaseBook("The First Frost", 3, discountPercentage, interestPercentage, taxPercentage, 5);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
+
+
+
