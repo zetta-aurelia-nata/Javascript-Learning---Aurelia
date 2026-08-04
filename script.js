@@ -111,11 +111,10 @@ function displayPaymentTerms(selectedBook, finalPrice, creditDuration, interestP
     const paymentSchedule = calculatePaymentSchedule(creditDuration, finalPrice, interestPercentage);
     console.log(paymentSchedule);
 
-    const totalpayment = paymentSchedule.reduce((total, item) => total + item.amountOfPayment, 0);
-    const totalInterest = paymentSchedule.reduce((total, item) => total + item.amountOfInterest, 0);
+    const totalPayment = paymentSchedule.reduce((total, item) => total + item.amountOfPayment, 0);
 
-    console.log("\nTotal payment:", totalpayment);
-    console.log("Is it Equal To Final Price:", totalpayment === finalPrice);
+    console.log("\nTotal payment:", totalPayment);
+    console.log("Is it Equal To Final Price:", totalPayment === finalPrice);
 }
 
 
@@ -193,6 +192,5 @@ const interestPercentage = 2;
 purchaseBook("The First Frost", 3, discountPercentage, interestPercentage, taxPercentage, 5);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
-
 
 

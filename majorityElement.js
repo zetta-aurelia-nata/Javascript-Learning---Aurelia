@@ -1,16 +1,23 @@
-function majorityElement(number) {
-    let candidate = null;
-    let count = 0;
+function majorityElement(numbers) {
+    if (numbers.length === 0) return null;
 
-    for (let num of number) {
-        if (count === 0) {
-            candidate = num;
+    const frequencyMap = {};
+    let maxCount = 0;
+    let mostFrequent = numbers[0];
+
+    for (const num of numbers) {
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+
+        if (frequencyMap[num] > maxCount) {
+            maxCount = frequencyMap[num];
+            mostFrequent = num;
         }
-        count += (num === candidate) ? 1 : -1;
     }
 
-    return candidate;
+    return mostFrequent;
 }
 
 console.log("The majority number is:", majorityElement([3, 2, 3]));
-console.log("The majority number is:", majorityElement([2, 2, 1, 1, 1, 2, 2])); 
+console.log("The majority number is:", majorityElement([2, 2, 1, 1, 1, 2, 2]));
+console.log("The majority number is:", majorityElement([1,1,2,2,2,3,3]));
+
