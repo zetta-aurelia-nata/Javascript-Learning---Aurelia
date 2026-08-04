@@ -99,7 +99,6 @@ function calculatePaymentSchedule(creditDuration, finalPrice, interestPercentage
             dueDate: dueDate.toLocaleDateString(),
             amountOfPayment,
             interest,
-            paymentPerMonth: amountOfPayment + interest
         };
     });
 }
