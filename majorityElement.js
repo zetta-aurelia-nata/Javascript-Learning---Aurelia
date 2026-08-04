@@ -1,14 +1,14 @@
-function majorityElement(numbers) {
-    if (numbers.length === 0) return null;
+function majorityElement(number) {
+    if (number.length === 0) return null;
 
-    numbers.sort((a, b) => a - b);
+    number.sort((a, b) => a - b);
 
     let maxCount = 1;
     let currentCount = 1;
-    let mostFrequent = numbers[0];
+    let mostFrequent = number[0];
 
-    for (let i = 1; i < numbers.length; i++) {
-        if (numbers[i] === numbers[i - 1]) {
+    for (let i = 1; i < number.length; i++) {
+        if (number[i] === number[i - 1]) {
             currentCount++;
         } else {
             currentCount = 1; 
@@ -16,7 +16,7 @@ function majorityElement(numbers) {
 
         if (currentCount > maxCount) {
             maxCount = currentCount;
-            mostFrequent = numbers[i];
+            mostFrequent = number[i];
         }
     }
     return mostFrequent;
