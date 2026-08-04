@@ -1,7 +1,6 @@
 function majorityElement(numbers) {
     if (numbers.length === 0) return null;
 
-    // Sort the array in ascending order
     numbers.sort((a, b) => a - b);
 
     let maxCount = 1;
@@ -12,7 +11,7 @@ function majorityElement(numbers) {
         if (numbers[i] === numbers[i - 1]) {
             currentCount++;
         } else {
-            currentCount = 1; // Reset count for a new number
+            currentCount = 1; 
         }
 
         if (currentCount > maxCount) {
