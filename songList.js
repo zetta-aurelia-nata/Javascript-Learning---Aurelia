@@ -73,7 +73,7 @@ function groupSongsByGenre() {
 }
 
 function groupSongsLessThanOneHour() {
-    const shuffled=[...songs].sort(() => Math.random() -0.5);
+    const shuffled=[...songs].sort(() => Math.random() -0,5)
     let totalDuration = 0;
 
     return shuffled.filter(songs => {
