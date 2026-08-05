@@ -162,10 +162,12 @@ function purchaseBook(bookTitle, purchaseQuantity, discountPercentage, interestP
     displayPaymentTerms(selectedBook, finalPrice, creditDuration, interestPercentage);
 }
 
-displayBooks();
+
 const discountPercentage = 15;
 const taxPercentage = 10;
 const interestPercentage = 2;
+
+displayBooks();
 purchaseBook("The First Frost", 3, discountPercentage, interestPercentage, taxPercentage, 5);
 console.log("\n========== BOOK LIST AFTER PURCHASE ==========");
 displayBooks();
