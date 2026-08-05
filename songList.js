@@ -53,31 +53,32 @@ function displaySongs() {
 }
 
 function groupSongsByArtist() {
-    return songs.reduce((groupedSongs, song) => {
-        if (!groupedSongs[song.artist]) {
-            groupedSongs[song.artist] = [];
+    return songs.reduce((groupedSongs, songs) => {
+        if (!groupedSongs[songs.artist]) {
+            groupedSongs[songs.artist] = [];
         }
-        groupedSongs[song.artist].push(song);
+        groupedSongs[songs.artist].push(songs);
         return groupedSongs;
     }, {});
 }
 
 function groupSongsByGenre() {
-    return songs.reduce((groupedSongs, song) => {
-        if (!groupedSongs[song.genre]) {
-            groupedSongs[song.genre] = [];
+    return songs.reduce((groupedSongs, songs) => {
+        if (!groupedSongs[songs.genre]) {
+            groupedSongs[songs.genre] = [];
         }
-        groupedSongs[song.genre].push(song);
+        groupedSongs[songs.genre].push(songs);
         return groupedSongs;
     }, {});
 }
 
 function groupSongsLessThanOneHour() {
+    const shuffled=[...songs].sort(() => Math.random() -0.5);
     let totalDuration = 0;
 
-    return songs.filter(song => {
-        if (totalDuration + song.duration < 3600) {
-            totalDuration += song.duration;
+    return shuffled.filter(songs => {
+        if (totalDuration + songs.duration < 3600) {
+            totalDuration += songs.duration;
             return true;
         }
         return false;
@@ -126,7 +127,7 @@ function displayGroupLessThanOneHour() {
     });
 
     const totalDuration = groupedSongs.reduce(
-        (total, song) => total + song.duration, 0);
+        (total, songs) => total + songs.duration, 0);
 
     console.log("\nTotal Duration:", totalDuration, "seconds");
     console.log("Less Than One Hour:", totalDuration < 3600);
