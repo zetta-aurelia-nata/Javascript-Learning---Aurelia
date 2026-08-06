@@ -7,7 +7,7 @@ const songs = [
     },
     {
         title: "Backburner",
-        artist: "NIKI",
+        artist: "Niki",
         genre: "Pop",
         duration: 570
     },
@@ -43,7 +43,7 @@ const songs = [
     },
 ];
 
-function displaySongs() {
+function getFormattedSongs() {
     return songs.map(({ title, artist, genre, duration }) => ({
         title,
         artist,
@@ -53,36 +53,31 @@ function displaySongs() {
 }
 
 function groupSongsByArtist() {
-    return songs.reduce((groupedSongs, songs) => {
-        if (!groupedSongs[songs.artist]) {
-            groupedSongs[songs.artist] = [];
-        }
-        groupedSongs[songs.artist].push(songs);
-        return groupedSongs;
-    }, {});
+    return songs.reduce((groupedSongs, song) => ({
+        ...groupedSongs,
+        [song.artist]: [...(groupedSongs[song.artist] ?? []), song],
+    }), {});
 }
 
 function groupSongsByGenre() {
-    return songs.reduce((groupedSongs, songs) => {
-        if (!groupedSongs[songs.genre]) {
-            groupedSongs[songs.genre] = [];
-        }
-        groupedSongs[songs.genre].push(songs);
-        return groupedSongs;
-    }, {});
+    return songs.reduce((groupedSongs, song) => ({
+        ...groupedSongs,
+        [song.genre]: [...(groupedSongs[song.genre] ?? []), song],
+    }), {});
 }
 
 function groupSongsLessThanOneHour() {
-    const shuffled = [...songs].sort(() => Math.random() - 0.5)
-    let totalDuration = 0;
+    const shuffled = [...songs].sort(() => Math.random() - 0.5);
 
-    return shuffled.filter(songs => {
-        if (totalDuration + songs.duration < 3600) {
-            totalDuration += songs.duration;
-            return true;
+    return shuffled.reduce(({ playlist, totalDuration }, song) => {
+        if (totalDuration + song.duration < 3600) {
+            return {
+                playlist: [...playlist, song],
+                totalDuration: totalDuration + song.duration,
+            };
         }
-        return false;
-    });
+        return { playlist, totalDuration };
+    }, { playlist: [], totalDuration: 0 }).playlist;
 }
 
 function displayGroupByArtist() {
@@ -133,7 +128,7 @@ function displayGroupLessThanOneHour() {
     console.log("Less Than One Hour:", totalDuration < 3600);
 }
 
-const songListArray = displaySongs();
+const songListArray = getFormattedSongs();
 console.log("\n========================== SONG LIST ARRAY ==========================");
 console.log(songListArray);
 
